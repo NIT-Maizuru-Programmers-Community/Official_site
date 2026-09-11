@@ -1,18 +1,37 @@
 # 舞鶴高専 プログラミングコンテスト部 公式サイト
 
-Next.js App Router / TypeScript / Tailwind CSS の静的サイトです。配信成果物は `out/` に出力されます。API・データベースは使いません。
+部員がGitHubで開発・更新する公式サイトです。Next.js・React・TypeScript・Tailwind CSSを使い、静的なHTMLとして配信します。ログインやデータベースはありません。
 
-## 開発を始める
+プログラミングやGitが初めてでも、誤字の修正、説明文の改善、不具合の報告から参加できます。最初から全部の技術を覚える必要はありません。
 
-Node.js 22.13以上と、`package.json` の `packageManager` に指定したpnpmを用意します。
+## 初めて参加する方へ
+
+1. [環境を準備してサイトを起動する](docs/getting-started.md)
+2. [小さな変更をして最初のPRを作る](docs/first-pull-request.md)
+3. [レビュー・マージのルールを確認する](CONTRIBUTING.md)
+
+詰まったら[困ったときの対処方法](docs/troubleshooting.md)へ。環境構築がまだできなくても、GitHubのIssuesから「開発・改善」「不具合報告」を投稿できます。
+
+## 目的別のガイド
+
+| やりたいこと                       | 読むもの                                            |
+| ---------------------------------- | --------------------------------------------------- |
+| お知らせ・作品・活動内容を更新する | [コンテンツ更新ガイド](docs/content-guide.md)       |
+| コードの配置と用語を知る           | [構成と用語](docs/project-guide.md)                 |
+| CIの失敗を調べる                   | [困ったときの対処方法](docs/troubleshooting.md)     |
+| 公開設定をする（管理者向け）       | [Cloudflare Pagesへの公開](docs/deployment.md)      |
+| 技術選定の理由を読む               | [Next.jsを継続する理由](docs/framework-decision.md) |
+
+## セットアップ済みの方
+
+リポジトリのフォルダーで実行します。
 
 ```sh
-npm install -g pnpm@11.19.0
 pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-ブラウザで http://localhost:3000 を開きます。
+ブラウザで http://localhost:3000 を開きます。起動したターミナルはそのままにし、終了するときはCtrl+Cを押します。
 
 ```sh
 pnpm format
@@ -21,54 +40,10 @@ pnpm lint
 pnpm typecheck
 pnpm test
 pnpm build
-pnpm preview
 ```
 
-`pnpm preview` は `out/` を配信します。Next.jsのサーバーは本番環境に不要です。
+Node.jsはCIと同じ22系（22.13以上）、pnpmは `package.json` の `packageManager` に指定した版を使います。ビルド結果は `out/` に生成され、`pnpm preview` で確認できます。
 
-## ページ
+トップ・活動紹介・作品紹介・お知らせ・お問い合わせ・各種リンク・プライバシーポリシーと404を用意しています。写真、活動日時、問い合わせ窓口などの公開情報は運営者による確定が必要です。
 
-`/`、`/activities/`、`/works/`、`/news/`、`/contact/`、`/links/`、`/privacy/` と `404.html` を生成します。
-
-## 内容を更新する
-
-| ファイル                    | 更新する内容                                       |
-| --------------------------- | -------------------------------------------------- |
-| `src/content/site.ts`       | 学校・部活名、活動日時・場所、写真、問い合わせ窓口 |
-| `src/content/activities.ts` | 活動内容                                           |
-| `src/content/news.ts`       | お知らせ                                           |
-| `src/content/works.ts`      | 作品                                               |
-| `src/content/links.ts`      | 外部リンク                                         |
-
-お知らせと作品は次の手順で追加します。
-
-1. 対応する配列にオブジェクトを追加します。型は `src/types/content.ts` を参照してください。
-2. `slug` は同じ配列で重複しない英小文字・数字・ハイフン、`publishedAt` は実在する `YYYY-MM-DD` 形式の日付にします。
-3. 作業中は `draft: true` にします。承認後に `false` にすると表示されます。表示順は日付の降順です。日付による予約投稿機能はありません。
-4. 画像は公開許可とEXIF削除を確認し、縮小したWebP/AVIFを `public/images/` に置きます。作品には `image: '/images/works/名前.webp'` と内容を説明する `imageAlt` を一緒に指定します。
-5. リンクはHTTPSにします。テストとプレビューで確認してPull Requestを作成します。
-
-サンプルのお知らせと作品は下書きなので表示されません。公開済みデータがない場合も、ページには準備中の案内が表示されます。活動紹介文は運営者が本番公開前に内容を確認してください。
-
-トップ写真は `site.heroImage` に `{ src: '/images/activities/名前.webp', alt: '写真の具体的な説明' }` を設定します。未設定時は文字のデザインを表示します。`design-concepts/` 内の生成モックアップ画像は配信しません。
-
-問い合わせ窓口は `site.contact` に `url`、`provider`、`retention`（保存期間）、`purpose`（利用目的）を設定します。お問い合わせページとプライバシーポリシーが同じ設定を参照します。未設定時は受付を案内せず、個人情報を収集しません。
-
-フォントはFontsourceパッケージからセルフホストしています。OG画像は `public/images/common/og.png`、アイコンは `public/favicon.svg` です。
-
-## GitHubでの更新
-
-[開発・更新ガイド](CONTRIBUTING.md)にPR・レビュー・管理者の承認省略の手順を記載しています。CIの `validate` は管理者を含め必須です。
-
-## Cloudflare Pages
-
-1. CloudflareのWorkers & PagesでPagesプロジェクトを作り、対象GitHubリポジトリに接続します。
-2. Production branchを `main`、Build commandを `pnpm build`、Build output directoryを `out` にします。Next.jsのサーバー用アダプターは不要です。
-3. ビルド環境は `NODE_VERSION=22`、`PNPM_VERSION=11.19.0` を設定します。
-4. ProductionとPreviewの `NEXT_PUBLIC_SITE_URL` に本番のHTTPSオリジン（例：実際に割り当てられたPagesドメイン）を設定します。パスは含めません。設定後は再ビルドが必要です。未設定のローカル環境ではcanonical/OGPを出力しません。
-5. Preview branch deploymentを有効にし、PRのプレビューで全ページを確認します。
-6. レビュー後にmainへマージし、Productionの更新、独自ドメイン、HTTPS、404を確認します。
-
-公開前に活動情報、問い合わせ先、公開許可を確定してください。プライバシーポリシーの「配信を予定しています」も実際の運用に合わせて更新します。公開権限を持つ管理者の操作が必要です。MVP実装のみではCloudflare接続・本番公開・GitHubの保護設定は別途管理します。
-
-参考：[Next.js Static Exports](https://nextjs.org/docs/app/guides/static-exports)、[Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/)、[Tailwind CSS](https://tailwindcss.com/docs/installation/framework-guides/nextjs)。
+[当初のStep 1計画書](docs/implementation-plan-step1.md)は設計時点の記録です。現在の操作手順は上記の各ガイドを参照してください。
