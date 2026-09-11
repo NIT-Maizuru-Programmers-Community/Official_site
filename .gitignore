@@ -7,3 +7,5 @@ out/
 .DS_Store
 coverage/
 .pnpm-store/
+CLAUDE.local.md
+.claude/settings.local.json

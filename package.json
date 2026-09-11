@@ -12,9 +12,13 @@
     "preview": "serve out",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "next typegen && tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run && node --test scripts/check-static.cases.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "check:quick": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test",
+    "check:static": "node scripts/check-static.mjs",
+    "check": "pnpm check:quick && pnpm build && pnpm check:static",
+    "check:env": "node scripts/doctor.mjs"
   },
   "dependencies": {
     "next": "^16.2.0",

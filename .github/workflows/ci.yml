@@ -25,13 +25,5 @@ jobs:
           node-version: '22'
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm format:check
-      - run: pnpm lint
-      - run: pnpm typecheck
-      - run: pnpm test
-      - run: pnpm build
-      - name: Verify static pages
-        run: |
-          for page in index.html activities/index.html works/index.html news/index.html contact/index.html links/index.html privacy/index.html 404.html; do
-            test -s "out/$page" || exit 1
-          done
+      - name: Check application and static export
+        run: pnpm check
