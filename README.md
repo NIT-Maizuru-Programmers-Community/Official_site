@@ -22,6 +22,8 @@
 | 公開設定をする（管理者向け）       | [Cloudflare Pagesへの公開](docs/deployment.md)      |
 | 技術選定の理由を読む               | [Next.jsを継続する理由](docs/framework-decision.md) |
 
+AIを使って作業する場合は [Codex・Claude Codeの開発ガイド](docs/agent-workflow.md)を参照してください。共通ルールは [AGENTS.md](AGENTS.md) にあります。
+
 ## セットアップ済みの方
 
 リポジトリのフォルダーで実行します。

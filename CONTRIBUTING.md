@@ -35,7 +35,11 @@ GitHubの仕様上、自分が作成したPRに自分でApproveを付けるこ�
 
 管理者の迂回は `main-review-policy` のみに適用します。直接push、force push、ブランチ削除を許可するものではありません。
 
+AIツールで作業する場合も同じルールを適用します。[Codex・Claude Codeの開発ガイド](docs/agent-workflow.md)を参照してください。
+
 ## CIとマージ条件
+
+PR提出前は `pnpm check` でCIと同じ検証をまとめて実行できます。
 
 main向けPR、mainへのpush、手動実行でGitHub Actionsの `validate` が動きます。Node.js 22と指定版pnpmで、依存インストール、整形、Lint、型チェック、テスト、静的ビルドを順に検証します。
 
