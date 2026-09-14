@@ -8,7 +8,7 @@
 | Astro＋React   | 静的な情報発信サイトに適し、必要な部分にReactを利用できる。一方、今回はサイト全体をReactで開発する学習目的を優先した。                         |
 | TanStack Start | 型安全なルーティングとデータ読み込みを学ぶ候補。静的プリレンダリングも可能だが、今回はルーティング・メタデータ・配信設定の移行コストを避けた。 |
 
-性能を同一条件で実測比較した判断ではない。将来、データ取得やアプリ機能の学習要件が変わった際に再検討する。現時点ではDB、ログイン、サーバーAPIを追加せず、Cloudflare Pagesで配信できる静的出力を維持する。
+性能を同一条件で実測比較した判断ではない。将来、データ取得やアプリ機能の学習要件が変わった際に再検討する。現時点ではDB、ログイン、サーバーAPIを追加せず、Cloudflare Workers Static Assetsで配信する静的出力を維持する。配信先は2026-09-14にWorkersを採用する方針へ更新した。
 
 - [Next.js Static Exports](https://nextjs.org/docs/app/guides/static-exports)
 - [Astro Islands](https://docs.astro.build/en/concepts/islands/)

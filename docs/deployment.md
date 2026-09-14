@@ -1,12 +1,29 @@
-# 管理者向け：Cloudflare Pagesへの公開
+# 管理者向け：Cloudflare Workersへの公開
 
-1. CloudflareのWorkers & PagesでPagesプロジェクトを作り、対象GitHubリポジトリに接続します。
-2. Production branchを `main`、Build commandを `pnpm build`、Build output directoryを `out` にします。Next.jsのサーバー用アダプターは不要です。
-3. ビルド環境は `NODE_VERSION=22`、`PNPM_VERSION=11.19.0` を設定します。
-4. ProductionとPreviewの `NEXT_PUBLIC_SITE_URL` に本番のHTTPSオリジン（例：実際に割り当てられたPagesドメイン）を設定します。パスは含めません。設定後は再ビルドが必要です。未設定のローカル環境ではcanonical/OGPを出力しません。
-5. Preview branch deploymentを有効にし、PRのプレビューで全ページを確認します。
-6. レビュー後にmainへマージし、Productionの更新、独自ドメイン、HTTPS、404を確認します。
+## 採用方針
 
-公開前に活動情報、問い合わせ先、公開許可を確定してください。プライバシーポリシーの「配信を予定しています」も実際の運用に合わせて更新します。公開権限を持つ管理者の操作が必要です。GitHubの保護設定は設定済みです。Cloudflareの接続と本番公開は別途実施します。
+2026-09-14時点で、公式サイトの配信先は **Cloudflare Workers Static Assets** とします。Next.jsのStatic Export（`output: 'export'`）で生成する `out/` のHTML・CSS・JavaScript・画像を配信します。
 
-参考：[Next.js Static Exports](https://nextjs.org/docs/app/guides/static-exports)、[Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/)、[Tailwind CSS](https://tailwindcss.com/docs/installation/framework-guides/nextjs)。
+現在のMVPは静的サイトです。Next.jsのSSR・Server ActionsをWorkers上で実行する構成にはしません。将来APIを追加する場合は別途設計し、Goを採用する場合もその実行基盤を改めて選定します。
+
+## 現在の状態
+
+- Next.jsの静的ビルドと、CIによる7ページ・404の出力確認は実装済みです。
+- Wrangler設定、Cloudflareとの接続、Preview/Productionへのデプロイ、独自ドメインの設定は未実施です。
+- この文書は採用方針の記録です。Pages向けの設定手順は使用しません。
+
+## 配信実装時に行うこと
+
+1. WranglerとWorkers Static Assetsの設定を追加し、配信ディレクトリを `out/` にします。
+2. ビルド時の `NEXT_PUBLIC_SITE_URL` に本番のHTTPSオリジンを設定します。未設定のローカル環境ではcanonical/OGPを出力しません。
+3. ローカルのWorkers環境で全ページ、末尾スラッシュ、404、画像、ヘッダーの扱いを確認します。
+4. PreviewとProductionを分け、GitHub連携・必要な権限・デプロイ方法を設定します。
+5. 必須CI成功とレビューを経て公開し、HTTPS・独自ドメイン・OGPを実環境で確認します。
+
+公開前には活動情報、問い合わせ窓口、写真の公開許可を確定してください。プライバシーポリシーの「配信を予定しています」も公開状況に合わせて更新します。
+
+## 参考
+
+- [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
+- [Workers Static Assetsの設定](https://developers.cloudflare.com/workers/static-assets/binding/)
+- [Next.js Static Exports](https://nextjs.org/docs/app/guides/static-exports)

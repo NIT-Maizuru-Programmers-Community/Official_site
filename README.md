@@ -1,6 +1,6 @@
 # 舞鶴高専 プログラミングコンテスト部 公式サイト
 
-部員がGitHubで開発・更新する公式サイトです。Next.js・React・TypeScript・Tailwind CSSを使い、静的なHTMLとして配信します。ログインやデータベースはありません。
+部員がGitHubで開発・更新する公式サイトです。Next.js・React・TypeScript・Tailwind CSSを使い、静的なHTMLをCloudflare Workers Static Assetsで配信する方針です。ログインやデータベースはありません。
 
 プログラミングやGitが初めてでも、誤字の修正、説明文の改善、不具合の報告から参加できます。最初から全部の技術を覚える必要はありません。
 
@@ -19,7 +19,7 @@
 | お知らせ・作品・活動内容を更新する | [コンテンツ更新ガイド](docs/content-guide.md)       |
 | コードの配置と用語を知る           | [構成と用語](docs/project-guide.md)                 |
 | CIの失敗を調べる                   | [困ったときの対処方法](docs/troubleshooting.md)     |
-| 公開設定をする（管理者向け）       | [Cloudflare Pagesへの公開](docs/deployment.md)      |
+| 公開設定をする（管理者向け）       | [Cloudflare Workersへの公開](docs/deployment.md)    |
 | 技術選定の理由を読む               | [Next.jsを継続する理由](docs/framework-decision.md) |
 
 AIを使って作業する場合は [Codex・Claude Codeの開発ガイド](docs/agent-workflow.md)を参照してください。共通ルールは [AGENTS.md](AGENTS.md) にあります。

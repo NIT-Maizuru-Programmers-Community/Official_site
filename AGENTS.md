@@ -12,6 +12,7 @@
 ## 実装方針
 
 - Next.js App Router / React / TypeScript strict / Tailwind CSS。`output: 'export'` と7ページ・404の静的配信を維持する。
+- 配信先はCloudflare Workers Static Assets。Next.jsが生成する `out/` を配信する。Wrangler設定・デプロイは別途実装し、未設定の状態を公開済みと扱わない。
 - `src/content/` のTypeScriptデータと `satisfies` による型検証を使う。下書きは公開一覧から除外する。
 - Server Componentを基本とし、操作に必要な部分だけClient Componentにする。
 - デザインは既存のCSS変数・コンポーネントを再利用する。依頼にない全面改修は避ける。
