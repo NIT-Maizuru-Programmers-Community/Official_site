@@ -28,7 +28,7 @@ export default function Privacy() {
       <section className="detail-section">
         <h2>外部サービス</h2>
         <p>
-          Cloudflare Pagesでの配信を予定しています。配信時の情報の取り扱いは
+          Cloudflare Workersでの配信を予定しています。配信時の情報の取り扱いは
           <a href="https://www.cloudflare.com/privacypolicy/">
             Cloudflareのプライバシーポリシー
           </a>
