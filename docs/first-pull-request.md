@@ -6,7 +6,7 @@ PR（Pull Request）は「この変更を取り込んでください」という
 
 [Issues](https://github.com/NIT-Maizuru-Programmers-Community/Official_site/issues)で、既存の作業と重複していないか確認します。新しく作る場合は「開発・改善」を選び、「どの文章を、なぜ直したいか」を書きます。
 
-以下はIssue番号が123だった場合の例です。`123` は実際の番号に置き換えてください。
+以下はIssue番号が123だった場合の例です。`123` は実際の番号、`HizKz` は自分のGitHubユーザー名に置き換えてください。命名の詳細は[共同開発ルール](../CONTRIBUTING.md)を参照してください。
 
 ## 2. 自分の作業ブランチを作る
 
@@ -16,10 +16,10 @@ PR（Pull Request）は「この変更を取り込んでください」という
 git status
 git switch main
 git pull --ff-only origin main
-git switch -c feature/123-improve-activity-copy
+git switch -c docs/HizKz/123-improve-activity-copy
 ```
 
-`main` は共有する完成版、作業ブランチは自分の変更を進める場所です。`git branch --show-current` で `feature/123-improve-activity-copy` と表示されれば準備完了です。
+`main` は共有する完成版、作業ブランチは自分の変更を進める場所です。`git branch --show-current` で `docs/HizKz/123-improve-activity-copy` と表示されれば準備完了です。
 
 初回コミット前に、記録する名前・メールをこのリポジトリへ設定します。以下の値は自分のものに置き換えます。メールを公開したくない場合はGitHubのSettings → Emailsにある自分のnoreplyアドレスを使ってください。
 
@@ -59,8 +59,8 @@ git diff
 ```sh
 git add src/content/activities.ts
 git diff --cached
-git commit -m "docs: improve activity description"
-git push -u origin feature/123-improve-activity-copy
+git commit -m "docs: 活動紹介の説明文を改善"
+git push -u origin docs/HizKz/123-improve-activity-copy
 ```
 
 `git diff --cached` はコミットする差分です。意図しないファイルが含まれていたら、コミット前に相談してください。
@@ -69,7 +69,7 @@ git push -u origin feature/123-improve-activity-copy
 
 1. リポジトリのPull requestsからNew pull requestを開きます。push直後ならCompare & pull requestも使えます。
 2. baseを `main`、compareを自分の作業ブランチにします。
-3. 目的・変更内容・関連Issueを記入します。関連Issueに `Closes #123` と書くと、マージ時にそのIssueも閉じられます。
+3. タイトルは `docs: 活動紹介の説明文を改善` のように書き、目的・変更内容・関連Issueを記入します。関連Issueに `Closes #123` と書くと、マージ時にそのIssueも閉じられます。参考の場合は `Refs #123`、Issueがない場合は「なし」とします。
 4. 確認欄にチェックし、結果・対象外の理由を記入します。未実施の項目にはチェックしません。
 5. Create pull requestで作成します。作業途中はDraftを選び、準備できたらReady for reviewにします。
 6. Checksの `validate` が成功することを確認し、別の部員にレビューを依頼します。

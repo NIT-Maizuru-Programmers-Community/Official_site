@@ -23,6 +23,8 @@
 
 Node.jsは22.13以上に対応し、CIとそろえる場合は22系を使用します。pnpmの指定版は [package.json](../package.json) が正です。doctorは設定値の簡易確認であり、ビルド成功やパッケージの完全性を保証するものではありません。
 
+ブランチ名・コミット・PRタイトルは [CONTRIBUTING.md](../CONTRIBUTING.md) の命名ルールに従います。AIも `種類/担当者のGitHub名/概要` を使い、担当者には依頼者のGitHubユーザー名を指定します。不明な場合は確認し、認証中のアカウントから推測しません。`codex/`・`claude/`を特別な接頭辞にはしません。
+
 ## 共通コマンド
 
 | コマンド            | 内容                                         | 使う場面           |
@@ -56,6 +58,8 @@ AGENTS.mdとCONTRIBUTING.mdを読んでから作業してください。
 
 ```text
 Issue #123の修正を、AGENTS.mdに従って実装してください。
+担当者のGitHub名：HizKz（自分のユーザー名に置き換えてください）。
+ブランチ名は fix/HizKz/123-fix-mobile-menu を使ってください（概要はIssueに合わせて変更）。
 最新mainから作業ブランチを作り、目的外の変更を含めず、pnpm checkを実行してください。
 変更をcommit・pushし、テンプレートに沿ったPRを作成してください。
 GitHub Actionsのvalidateを確認し、失敗した場合は原因を直してください。
