@@ -1,6 +1,6 @@
-# 舞鶴高専 プログラミングコンテスト部 公式サイト
+# 舞鶴高専 プログラマーズコミュニティ部 公式サイト
 
-部員がGitHubで開発・更新する公式サイトです。Next.js・React・TypeScript・Tailwind CSSを使い、静的なHTMLをCloudflare Workers Static Assetsで配信する方針です。ログインやデータベースはありません。
+プログラマーズコミュニティ部（略称：プロコン部）の部員がGitHubで開発・更新する公式サイトです。Next.js・React・TypeScript・Tailwind CSSを使い、静的なHTMLをCloudflare Workers Static Assetsで配信する方針です。ログインやデータベースはありません。
 
 プログラミングやGitが初めてでも、誤字の修正、説明文の改善、不具合の報告から参加できます。最初から全部の技術を覚える必要はありません。
 

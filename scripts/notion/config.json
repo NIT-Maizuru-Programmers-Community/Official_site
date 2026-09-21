@@ -1,0 +1,60 @@
+{
+  "repository": "NIT-Maizuru-Programmers-Community/Official_site",
+  "documents": [
+    {
+      "id": "readme",
+      "path": "README.md",
+      "pageId": "3e275e9e-2508-8133-a435-ca4c8e7dc99e"
+    },
+    {
+      "id": "contributing",
+      "path": "CONTRIBUTING.md",
+      "pageId": "3e275e9e-2508-815f-94a3-c5799c4bd69d"
+    },
+    {
+      "id": "getting-started",
+      "path": "docs/getting-started.md",
+      "pageId": "3e275e9e-2508-81da-b24d-ef12e748859c"
+    },
+    {
+      "id": "first-pull-request",
+      "path": "docs/first-pull-request.md",
+      "pageId": "3e275e9e-2508-8184-9689-c709a3bbd0bb"
+    },
+    {
+      "id": "project-guide",
+      "path": "docs/project-guide.md",
+      "pageId": "3e275e9e-2508-8169-963f-f508b21ec8fc"
+    },
+    {
+      "id": "agent-workflow",
+      "path": "docs/agent-workflow.md",
+      "pageId": "3e275e9e-2508-814d-bdc3-cd423d67140c"
+    },
+    {
+      "id": "content-guide",
+      "path": "docs/content-guide.md",
+      "pageId": "3e275e9e-2508-8106-b4e5-cbe943105fd6"
+    },
+    {
+      "id": "deployment",
+      "path": "docs/deployment.md",
+      "pageId": "3e275e9e-2508-81e0-a4e0-ca23dbd14c94"
+    },
+    {
+      "id": "framework-decision",
+      "path": "docs/framework-decision.md",
+      "pageId": "3e275e9e-2508-81c3-9cb3-f098612bec77"
+    },
+    {
+      "id": "troubleshooting",
+      "path": "docs/troubleshooting.md",
+      "pageId": "3e275e9e-2508-818e-b4ce-f6f888e5169c"
+    },
+    {
+      "id": "notion-sync",
+      "path": "docs/notion-sync.md",
+      "pageId": "3e275e9e-2508-813b-b1ee-c0c03ae75129"
+    }
+  ]
+}

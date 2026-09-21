@@ -12,32 +12,41 @@
     "preview": "serve out",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "next typegen && tsc --noEmit",
-    "test": "vitest run && node --test scripts/check-static.cases.mjs",
+    "test": "vitest run && node --test scripts/check-static.cases.mjs && pnpm test:notion",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check:quick": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test",
     "check:static": "node scripts/check-static.mjs",
     "check": "pnpm check:quick && pnpm build && pnpm check:static",
-    "check:env": "node scripts/doctor.mjs"
+    "check:env": "node scripts/doctor.mjs",
+    "test:notion": "node --test scripts/notion/*.cases.mjs",
+    "notion:dry-run": "node scripts/notion/sync.mjs --dry-run",
+    "notion:setup": "node scripts/notion/sync.mjs --setup",
+    "notion:verify": "node scripts/notion/sync.mjs --verify",
+    "notion:sync": "node scripts/notion/sync.mjs --sync"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/noto-sans-jp": "^5.2.8",
     "next": "^16.2.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "@fontsource-variable/inter": "^5.2.8",
-    "@fontsource-variable/noto-sans-jp": "^5.2.8"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.0",
-    "tailwindcss": "^4.2.0",
-    "typescript": "^5.9.3",
     "@types/node": "^22.0.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "eslint": "^9.39.0",
     "eslint-config-next": "^16.2.0",
     "prettier": "^3.8.0",
-    "vitest": "^4.0.0",
-    "serve": "^14.2.4"
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-stringify": "^11.0.0",
+    "serve": "^14.2.4",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^5.9.3",
+    "unified": "^11.0.5",
+    "vitest": "^4.0.0"
   }
 }
