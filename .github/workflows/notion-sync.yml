@@ -1,0 +1,50 @@
+name: Sync development guides to Notion
+on:
+  push:
+    branches: [main]
+    paths:
+      - README.md
+      - CONTRIBUTING.md
+      - docs/getting-started.md
+      - docs/first-pull-request.md
+      - docs/project-guide.md
+      - docs/agent-workflow.md
+      - docs/content-guide.md
+      - docs/deployment.md
+      - docs/framework-decision.md
+      - docs/troubleshooting.md
+      - docs/notion-sync.md
+      - scripts/notion/**
+      - .github/workflows/notion-sync.yml
+      - package.json
+      - pnpm-lock.yaml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: notion-development-guides
+  cancel-in-progress: false
+jobs:
+  sync:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:notion
+      - name: Synchronize managed pages
+        run: pnpm notion:sync
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_PARENT_PAGE_ID: ${{ vars.NOTION_PARENT_PAGE_ID }}
