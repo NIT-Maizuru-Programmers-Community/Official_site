@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { News, Work } from '@/types/content';
 import { formatDate } from '@/lib/content';
+import { ThreeScene } from '@/components/visual/three-scene';
 export function ArrowLink({
   href,
   children,
@@ -29,11 +30,14 @@ export function PageHeading({
 }) {
   return (
     <div className="page-heading">
-      <p className="eyebrow">
-        {number} / {english}
-      </p>
-      <h1>{title}</h1>
-      <p className="lead">{description}</p>
+      <div className="page-heading-copy">
+        <p className="eyebrow">
+          {number} / {english}
+        </p>
+        <h1>{title}</h1>
+        <p className="lead">{description}</p>
+      </div>
+      <ThreeScene compact variant={number} />
     </div>
   );
 }
