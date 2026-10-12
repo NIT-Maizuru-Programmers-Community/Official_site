@@ -9,7 +9,9 @@ export function Navigation() {
   return (
     <>
       <button
+        type="button"
         className="menu-toggle"
+        aria-label={open ? 'メニューを閉じる' : 'メニューを開く'}
         aria-expanded={open}
         aria-controls="main-navigation"
         onClick={() => setOpen(!open)}

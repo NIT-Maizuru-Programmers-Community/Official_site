@@ -6,6 +6,7 @@ import { works } from '@/content/works';
 import { published } from '@/lib/content';
 import { pageMetadata } from '@/lib/metadata';
 import { ArrowLink, NewsList, WorkList } from '@/components/ui/content';
+import { ThreeScene } from '@/components/visual/three-scene';
 export const metadata = pageMetadata('ホーム', site.description, '/');
 export default function Home() {
   return (
@@ -14,9 +15,9 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow">舞鶴高専 / PROGRAMMERS COMMUNITY</p>
           <h1>
-            プログラミング
+            プログラマーズ
             <br />
-            コンテスト部<span className="blue-dot">.</span>
+            コミュニティ部<span className="blue-dot">.</span>
           </h1>
           <p className="hero-tagline">つくって、試して、またつくる。</p>
           <p className="hero-description">
@@ -35,25 +36,28 @@ export default function Home() {
               sizes="(max-width: 760px) 100vw, 45vw"
             />
           ) : (
-            <div className="type-poster" aria-hidden="true">
-              <span className="poster-small">
-                NITMC
-                <br />
-                PROGRAMMERS
-                <br />
-                COMMUNITY
-              </span>
-              <span className="poster-word">
-                Think.
-                <br />
-                Code.
-                <br />
-                Create.
-              </span>
-              <span className="poster-bottom">
-                MAIZURU, JAPAN <span>↗</span>
-              </span>
-            </div>
+            <>
+              <ThreeScene variant="01" />
+              <div className="type-poster" aria-hidden="true">
+                <span className="poster-small">
+                  NITMC
+                  <br />
+                  PROGRAMMERS
+                  <br />
+                  COMMUNITY
+                </span>
+                <span className="poster-word">
+                  Think.
+                  <br />
+                  Code.
+                  <br />
+                  Create.
+                </span>
+                <span className="poster-bottom">
+                  MAIZURU, JAPAN <span>↗</span>
+                </span>
+              </div>
+            </>
           )}
         </div>
       </section>

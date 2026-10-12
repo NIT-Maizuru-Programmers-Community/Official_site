@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import '@fontsource-variable/inter';
-import '@fontsource-variable/noto-sans-jp';
 import './globals.css';
 import { site, navigation } from '@/content/site';
 import { Navigation } from '@/components/layout/navigation';
+import { ScrollMotion } from '@/components/layout/scroll-motion';
 export const metadata: Metadata = {
   title: {
     default: `${site.name} | ${site.school}`,
@@ -35,15 +35,15 @@ export default function RootLayout({
           <Navigation />
         </header>
         <main id="main" tabIndex={-1}>
-          {children}
+          <ScrollMotion>{children}</ScrollMotion>
         </main>
         <footer className="site-footer">
           <div>
             <p className="eyebrow">MAIZURU KOSEN</p>
             <Link href="/" className="footer-name">
-              プログラミング
+              プログラマーズ
               <br />
-              コンテスト部
+              コミュニティ部
             </Link>
             <p>{site.english}</p>
           </div>
