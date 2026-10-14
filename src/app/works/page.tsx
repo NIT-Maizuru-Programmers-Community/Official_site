@@ -1,5 +1,6 @@
 import { works } from '@/content/works';
 import { site } from '@/content/site';
+import { ExternalLink } from '@/components/ui/external-link';
 import { published } from '@/lib/content';
 import { pageMetadata } from '@/lib/metadata';
 import { PageHeading, WorkList } from '@/components/ui/content';
@@ -22,9 +23,9 @@ export default function Works() {
       <div className="detail-section">
         <h2>開発の様子をGitHubで</h2>
         <p>公開リポジトリはこちらからご覧いただけます。</p>
-        <a className="arrow-link" href={site.github}>
+        <ExternalLink className="arrow-link" href={site.github}>
           GitHub Organization <span aria-hidden="true">↗</span>
-        </a>
+        </ExternalLink>
       </div>
     </div>
   );

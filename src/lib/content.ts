@@ -1,8 +1,16 @@
-import type { DatedContent } from '@/types/content';
+import type { Achievement, DatedContent } from '@/types/content';
 export function published<T extends DatedContent>(items: readonly T[]): T[] {
   return items
     .filter((item) => !item.draft)
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+}
+export function orderedAchievements(
+  items: readonly Achievement[],
+): Achievement[] {
+  return published(items).sort(
+    (a, b) =>
+      b.eventYear - a.eventYear || b.publishedAt.localeCompare(a.publishedAt),
+  );
 }
 export function formatDate(date: string): string {
   return date.replaceAll('-', '.');

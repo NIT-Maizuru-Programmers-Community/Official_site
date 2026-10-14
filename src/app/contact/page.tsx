@@ -1,6 +1,7 @@
 import { site } from '@/content/site';
 import Link from 'next/link';
 import { PageHeading } from '@/components/ui/content';
+import { ExternalLink } from '@/components/ui/external-link';
 import { pageMetadata } from '@/lib/metadata';
 export const metadata = pageMetadata(
   'お問い合わせ',
@@ -33,9 +34,9 @@ export default function Contact() {
               お問い合わせは{site.contact.provider}
               の外部フォームで受け付けています。
             </p>
-            <a className="button-link" href={site.contact.url}>
+            <ExternalLink className="button-link" href={site.contact.url}>
               お問い合わせフォームへ ↗
-            </a>
+            </ExternalLink>
             <p>
               外部サービスに移動します。送信前に
               <Link href="/privacy">プライバシーポリシー</Link>
@@ -52,9 +53,9 @@ export default function Contact() {
         <h2>お問い合わせの前に</h2>
         <p>
           パスワードなどの秘密情報や、第三者の個人情報を送らないでください。学校全般については、
-          <a href="https://www.maizuru-ct.ac.jp/">
+          <ExternalLink href="https://www.maizuru-ct.ac.jp/">
             舞鶴工業高等専門学校の公式サイト
-          </a>
+          </ExternalLink>
           をご確認ください。
         </p>
       </section>

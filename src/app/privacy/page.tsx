@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { site } from '@/content/site';
 import { PageHeading } from '@/components/ui/content';
+import { ExternalLink } from '@/components/ui/external-link';
 import { pageMetadata } from '@/lib/metadata';
 export const metadata = pageMetadata(
   'プライバシーポリシー',
@@ -29,9 +30,9 @@ export default function Privacy() {
         <h2>外部サービス</h2>
         <p>
           Cloudflare Workersでの配信を予定しています。配信時の情報の取り扱いは
-          <a href="https://www.cloudflare.com/privacypolicy/">
+          <ExternalLink href="https://www.cloudflare.com/privacypolicy/">
             Cloudflareのプライバシーポリシー
-          </a>
+          </ExternalLink>
           をご確認ください。外部リンク先での情報の取り扱いは、各サイトの方針に従います。
         </p>
         <p>

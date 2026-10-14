@@ -3,9 +3,15 @@ import { site } from '@/content/site';
 import { activities } from '@/content/activities';
 import { news } from '@/content/news';
 import { works } from '@/content/works';
-import { published } from '@/lib/content';
+import { results } from '@/content/results';
+import { orderedAchievements, published } from '@/lib/content';
 import { pageMetadata } from '@/lib/metadata';
-import { ArrowLink, NewsList, WorkList } from '@/components/ui/content';
+import {
+  AchievementList,
+  ArrowLink,
+  NewsList,
+  WorkList,
+} from '@/components/ui/content';
 import { ThreeScene } from '@/components/visual/three-scene';
 export const metadata = pageMetadata('ホーム', site.description, '/');
 export default function Home() {
@@ -17,7 +23,7 @@ export default function Home() {
           <h1>
             プログラマーズ
             <br />
-            コミュニティ部<span className="blue-dot">.</span>
+            コミュニティ部<span className="accent-dot">.</span>
           </h1>
           <p className="hero-tagline">つくって、試して、またつくる。</p>
           <p className="hero-description">
@@ -108,6 +114,14 @@ export default function Home() {
           <ArrowLink href="/works">作品一覧へ</ArrowLink>
         </div>
         <WorkList items={published(works).slice(0, 2)} />
+      </section>
+      <section className="section split-section">
+        <div>
+          <p className="eyebrow">04 / RESULTS</p>
+          <h2>大会・イベント実績</h2>
+          <ArrowLink href="/results">実績をすべて見る</ArrowLink>
+        </div>
+        <AchievementList items={orderedAchievements(results).slice(0, 2)} />
       </section>
       <section className="join-section">
         <p className="eyebrow">JOIN OUR COMMUNITY</p>
