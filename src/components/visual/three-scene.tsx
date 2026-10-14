@@ -57,15 +57,15 @@ const fragmentShader = /* glsl */ `
     float returnGlow = exp(-returnDistance / (width * 1.9));
 
     float colorShift = smoothstep(-aspect * 0.32, aspect * 0.36, p.x);
-    vec3 blue = vec3(0.12, 0.34, 1.0);
-    vec3 cyan = vec3(0.25, 0.82, 1.0);
-    vec3 ice = vec3(0.78, 0.96, 1.0);
-    vec3 amber = vec3(1.0, 0.53, 0.28);
-    vec3 ribbonColor = mix(blue, cyan, smoothstep(0.0, 0.68, colorShift));
-    ribbonColor = mix(ribbonColor, amber, smoothstep(0.8, 1.0, colorShift) * 0.38);
+    vec3 charcoal = vec3(0.16, 0.16, 0.17);
+    vec3 silver = vec3(0.58, 0.59, 0.62);
+    vec3 ice = vec3(0.96, 0.96, 0.98);
+    vec3 lightSilver = vec3(0.82, 0.83, 0.86);
+    vec3 ribbonColor = mix(charcoal, silver, smoothstep(0.0, 0.68, colorShift));
+    ribbonColor = mix(ribbonColor, lightSilver, smoothstep(0.8, 1.0, colorShift) * 0.38);
     ribbonColor = mix(ribbonColor, ice, innerHighlight * 0.78);
 
-    vec3 returningColor = mix(vec3(0.12, 0.5, 1.0), vec3(0.32, 0.9, 1.0), colorShift);
+    vec3 returningColor = mix(vec3(0.3, 0.3, 0.32), vec3(0.72, 0.73, 0.76), colorShift);
     float halo = exp(-length(vec2(p.x - aspect * 0.05, p.y - sweep)) * 2.3);
     float glintX = sin(t * 0.72 + uVariant) * aspect * 0.28;
     float glintY = sin(glintX * 2.1 + t) * 0.19
@@ -78,8 +78,8 @@ const fragmentShader = /* glsl */ `
     vec3 color = ribbonColor * (glassBody * 0.24 + core * 0.38
       + innerHighlight * 0.7 + lowerEdge * 0.2 + glow * 0.1)
       + returningColor * (returnCore * 0.3 + returnGlow * 0.07)
-      + vec3(0.48, 0.8, 1.0) * travelingGlint * 0.58
-      + vec3(0.14, 0.42, 1.0) * halo * 0.11;
+      + vec3(0.94, 0.94, 0.96) * travelingGlint * 0.58
+      + vec3(0.42, 0.42, 0.45) * halo * 0.11;
 
     gl_FragColor = vec4(color, clamp(alpha * uStrength, 0.0, 0.78));
   }
