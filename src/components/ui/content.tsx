@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import type { News, Work } from '@/types/content';
+import { ExternalLink } from '@/components/ui/external-link';
+import type { Achievement, News, Work } from '@/types/content';
 import { formatDate } from '@/lib/content';
 import { ThreeScene } from '@/components/visual/three-scene';
 export function ArrowLink({
@@ -55,8 +56,13 @@ export function NewsList({ items }: { items: readonly News[] }) {
             </time>
             <span>{item.category}</span>
           </div>
-          <h3>{item.title}</h3>
+          <h3>
+            <Link href={`/news/${item.slug}`}>{item.title}</Link>
+          </h3>
           <p>{item.summary}</p>
+          <Link className="article-read-link" href={`/news/${item.slug}`}>
+            記事を読む <span aria-hidden="true">↗</span>
+          </Link>
         </article>
       ))}
     </div>
@@ -64,6 +70,60 @@ export function NewsList({ items }: { items: readonly News[] }) {
     <EmptyState>
       公開中のお知らせはありません。活動の様子やイベント情報を、こちらでお届けします。
     </EmptyState>
+  );
+}
+
+export function AchievementList({ items }: { items: readonly Achievement[] }) {
+  if (!items.length)
+    return (
+      <EmptyState>
+        大会・イベントの実績は現在、掲載準備中です。確認できた結果から紹介します。
+      </EmptyState>
+    );
+
+  const years = [...new Set(items.map((item) => item.eventYear))].sort(
+    (a, b) => b - a,
+  );
+  return (
+    <div className="achievement-years">
+      {years.map((year) => (
+        <section className="achievement-year" key={year}>
+          <h2>{year}</h2>
+          <div className="works-list">
+            {items
+              .filter((item) => item.eventYear === year)
+              .map((item) => (
+                <article key={item.slug}>
+                  <p className="eyebrow">
+                    {item.eventName} · {item.eventYear}
+                  </p>
+                  <h3>
+                    <Link href={`/results/${item.slug}`}>{item.title}</Link>
+                  </h3>
+                  <p>{item.summary}</p>
+                  <ul className="achievement-outcomes" aria-label="大会結果">
+                    {item.outcomes.map((outcome) => (
+                      <li
+                        key={`${outcome.division}-${outcome.entry ?? 'team'}`}
+                      >
+                        <strong>{outcome.division}</strong>
+                        {outcome.entry && <span>{outcome.entry}</span>}
+                        <span>{outcome.result}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    className="article-read-link"
+                    href={`/results/${item.slug}`}
+                  >
+                    実績の詳細 <span aria-hidden="true">↗</span>
+                  </Link>
+                </article>
+              ))}
+          </div>
+        </section>
+      ))}
+    </div>
   );
 }
 export function WorkList({ items }: { items: readonly Work[] }) {
@@ -94,14 +154,14 @@ export function WorkList({ items }: { items: readonly Work[] }) {
           </ul>
           <div className="flex flex-wrap gap-6">
             {item.repositoryUrl && (
-              <a className="arrow-link" href={item.repositoryUrl}>
+              <ExternalLink className="arrow-link" href={item.repositoryUrl}>
                 ソースコード <span aria-hidden="true">↗</span>
-              </a>
+              </ExternalLink>
             )}
             {item.websiteUrl && (
-              <a className="arrow-link" href={item.websiteUrl}>
+              <ExternalLink className="arrow-link" href={item.websiteUrl}>
                 作品を見る <span aria-hidden="true">↗</span>
-              </a>
+              </ExternalLink>
             )}
           </div>
         </article>
