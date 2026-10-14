@@ -31,3 +31,16 @@ test('rejects a directory in place of HTML', (t) => {
   mkdirSync(join(directory, 'index.html'));
   assert.deepEqual(checkStatic(directory), ['index.html']);
 });
+test('checks generated article routes', (t) => {
+  const directory = fixture(t);
+  mkdirSync(join(directory, 'results/procon-37-2026'), { recursive: true });
+  writeFileSync(
+    join(directory, 'results/procon-37-2026/index.html'),
+    '<!doctype html><html lang="ja"></html>',
+  );
+  assert.deepEqual(checkStatic(directory), []);
+  rmSync(join(directory, 'results/procon-37-2026/index.html'));
+  assert.deepEqual(checkStatic(directory), [
+    'results/procon-37-2026/index.html',
+  ]);
+});

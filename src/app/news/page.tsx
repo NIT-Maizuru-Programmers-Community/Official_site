@@ -14,7 +14,7 @@ export default function News() {
         number="03"
         english="NEWS"
         title="お知らせ"
-        description="日々の活動と、これからのこと。"
+        description="活動報告、イベント、部活動からのお知らせを掲載します。"
       />
       <h2 className="sr-only">お知らせ一覧</h2>
       <NewsList items={published(news)} />

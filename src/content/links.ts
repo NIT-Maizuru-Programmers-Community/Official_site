@@ -18,4 +18,10 @@ export const links = [
     description: '高専プロコンの大会情報。',
     url: 'https://www.procon.gr.jp/',
   },
+  {
+    slug: 'zenn',
+    title: '部の技術ブログ（Zenn）',
+    description: '部員による技術記事を掲載しています。',
+    url: 'https://zenn.dev/p/maizuru_procon',
+  },
 ] satisfies readonly RelatedLink[];

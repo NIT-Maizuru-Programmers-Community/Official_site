@@ -3,6 +3,7 @@ import Link from 'next/link';
 import '@fontsource-variable/inter';
 import './globals.css';
 import { site, navigation } from '@/content/site';
+import { ExternalLink } from '@/components/ui/external-link';
 import { Navigation } from '@/components/layout/navigation';
 import { ScrollMotion } from '@/components/layout/scroll-motion';
 export const metadata: Metadata = {
@@ -53,7 +54,7 @@ export default function RootLayout({
                 {label}
               </Link>
             ))}
-            <a href={site.github}>GitHub ↗</a>
+            <ExternalLink href={site.github}>GitHub ↗</ExternalLink>
             <Link href="/privacy">プライバシーポリシー</Link>
           </div>
           <p className="copyright">© {site.english}</p>

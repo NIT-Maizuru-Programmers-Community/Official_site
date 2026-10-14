@@ -3,10 +3,16 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { news } from '../content/news';
 import { works } from '../content/works';
+import { results } from '../content/results';
 import { activities } from '../content/activities';
 import { links } from '../content/links';
 import { site } from '../content/site';
-import { isValidDate, published, formatDate } from './content';
+import {
+  isValidDate,
+  published,
+  formatDate,
+  orderedAchievements,
+} from './content';
 import type { Work } from '../types/content';
 describe('content publication', () => {
   it('excludes drafts, sorts newest first, and preserves the source', () => {
@@ -49,6 +55,7 @@ describe('content publication', () => {
   for (const [name, items] of Object.entries({
     news,
     works,
+    results,
     activities,
     links,
   })) {
@@ -61,7 +68,7 @@ describe('content publication', () => {
     });
   }
   it('validates dates, summaries, local images and HTTPS destinations', () => {
-    for (const item of [...news, ...works]) {
+    for (const item of [...news, ...works, ...results]) {
       expect(isValidDate(item.publishedAt)).toBe(true);
       expect(item.summary.trim()).not.toBe('');
     }
@@ -75,6 +82,13 @@ describe('content publication', () => {
           true,
         );
       }
+    }
+    for (const item of results) {
+      expect(Number.isInteger(item.eventYear)).toBe(true);
+      expect(item.outcomes.length).toBeGreaterThan(0);
+      expect(item.sources.length).toBeGreaterThan(0);
+      for (const source of item.sources)
+        expect(new URL(source.url).protocol).toBe('https:');
     }
     for (const link of links) expect(new URL(link.url).protocol).toBe('https:');
     if (site.heroImage) {
@@ -93,5 +107,15 @@ describe('content publication', () => {
       ])
         expect(field.trim()).toBeTruthy();
     }
+  });
+  it('orders published achievements by event year and omits drafts', () => {
+    expect(orderedAchievements(results).map((item) => item.eventYear)).toEqual([
+      2026, 2025,
+    ]);
+    expect(
+      orderedAchievements([{ ...results[0], draft: true }, results[1]]).map(
+        (item) => item.slug,
+      ),
+    ).toEqual(['procon-36-2025']);
   });
 });
