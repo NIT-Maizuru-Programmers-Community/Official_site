@@ -1,0 +1,16 @@
+{
+  "name": "nitmc-official-site",
+  "compatibility_date": "2026-10-30",
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "www.programmerscommunity.tech",
+      "custom_domain": true,
+    },
+  ],
+  "assets": {
+    "directory": "./out",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+  },
+}

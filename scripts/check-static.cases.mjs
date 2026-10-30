@@ -44,3 +44,15 @@ test('checks generated article routes', (t) => {
     'results/procon-37-2026/index.html',
   ]);
 });
+test('checks generated work detail routes', (t) => {
+  const directory = fixture(t);
+  mkdirSync(join(directory, 'works/example'), { recursive: true });
+  assert.deepEqual(checkStatic(directory), ['works/example/index.html']);
+  writeFileSync(join(directory, 'works/example/index.html'), '<!doctype html>');
+  assert.deepEqual(checkStatic(directory), []);
+});
+test('rejects a missing published work directory', (t) => {
+  const directory = fixture(t);
+  rmSync(join(directory, 'works/puranavi-pig'), { recursive: true });
+  assert.deepEqual(checkStatic(directory), ['works/puranavi-pig/index.html']);
+});

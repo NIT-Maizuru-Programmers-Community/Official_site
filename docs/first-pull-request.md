@@ -72,9 +72,9 @@ git push -u origin docs/HizKz/123-improve-activity-copy
 3. タイトルは `docs: 活動紹介の説明文を改善` のように書き、目的・変更内容・関連Issueを記入します。関連Issueに `Closes #123` と書くと、マージ時にそのIssueも閉じられます。参考の場合は `Refs #123`、Issueがない場合は「なし」とします。
 4. 確認欄にチェックし、結果・対象外の理由を記入します。未実施の項目にはチェックしません。
 5. Create pull requestで作成します。作業途中はDraftを選び、準備できたらReady for reviewにします。
-6. Checksの `validate` が成功することを確認し、別の部員にレビューを依頼します。
+6. Checksの `validate` が成功することを確認し、Reviewers欄に依頼がなければ `site-approvers` にレビューを依頼します。
 
-画面変更がない項目などは「対象外と確認した」場合にチェックして、理由を書きます。承認・CIが必要な理由は[共同開発ルール](../CONTRIBUTING.md)を参照してください。
+画面変更がない項目などは「対象外と確認した」場合にチェックして、理由を書きます。承認・CIが必要な理由は[共同開発ルール](../CONTRIBUTING.md)、レビュー担当の選ばれ方は[PRレビューの仕組み](review-guide.md)を参照してください。
 
 ## 6. レビューの修正とマージ後
 

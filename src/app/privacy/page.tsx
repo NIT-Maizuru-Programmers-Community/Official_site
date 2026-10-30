@@ -29,7 +29,7 @@ export default function Privacy() {
       <section className="detail-section">
         <h2>外部サービス</h2>
         <p>
-          Cloudflare Workersでの配信を予定しています。配信時の情報の取り扱いは
+          このサイトの配信にはCloudflare Workersを利用します。情報の取り扱いは
           <ExternalLink href="https://www.cloudflare.com/privacypolicy/">
             Cloudflareのプライバシーポリシー
           </ExternalLink>

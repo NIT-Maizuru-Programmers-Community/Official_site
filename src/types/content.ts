@@ -7,10 +7,12 @@ export type DatedContent = {
 };
 export type ExternalUrl = `https://${string}`;
 export type Work = DatedContent & {
+  body?: string;
   image?: string;
   imageAlt?: string;
   repositoryUrl?: ExternalUrl;
   websiteUrl?: ExternalUrl;
+  videoUrl?: ExternalUrl;
   tags: readonly string[];
 };
 export type News = DatedContent & {
