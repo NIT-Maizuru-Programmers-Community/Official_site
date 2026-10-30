@@ -24,7 +24,7 @@ export function checkStatic(directory) {
       failures.push(page);
     }
   }
-  for (const section of ['news', 'results']) {
+  for (const section of ['news', 'results', 'works']) {
     try {
       for (const entry of readdirSync(resolve(directory, section), {
         withFileTypes: true,
