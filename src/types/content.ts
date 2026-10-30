@@ -16,9 +16,8 @@ export type Work = DatedContent & {
   tags: readonly string[];
 };
 export type News = DatedContent & {
-  category: '活動報告' | 'イベント' | 'お知らせ';
-  body: string;
-};
+  category: '活動報告' | 'イベント' | 'お知らせ' | 'ブログ';
+} & ({ body: string; markdown?: never } | { body?: never; markdown: true });
 export type Achievement = DatedContent & {
   eventName: string;
   eventYear: number;
