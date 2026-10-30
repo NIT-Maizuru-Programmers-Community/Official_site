@@ -11,6 +11,7 @@ export type Work = DatedContent & {
   imageAlt?: string;
   repositoryUrl?: ExternalUrl;
   websiteUrl?: ExternalUrl;
+  videoUrl?: ExternalUrl;
   tags: readonly string[];
 };
 export type News = DatedContent & {
