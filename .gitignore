@@ -7,5 +7,6 @@ out/
 .DS_Store
 coverage/
 .pnpm-store/
+.wrangler/
 CLAUDE.local.md
 .claude/settings.local.json

@@ -1,29 +1,35 @@
 # 管理者向け：Cloudflare Workersへの公開
 
-## 採用方針
+## 配信方針と現在の状態
 
-2026-09-14時点で、公式サイトの配信先は **Cloudflare Workers Static Assets** とします。Next.jsのStatic Export（`output: 'export'`）で生成する `out/` のHTML・CSS・JavaScript・画像を配信します。
+Next.jsのStatic Export（`output: 'export'`）で生成した `out/` を、Cloudflare Workers Static Assetsで配信します。SSR・Server Actionsは使用しません。
 
-現在のMVPは静的サイトです。Next.jsのSSR・Server ActionsをWorkers上で実行する構成にはしません。将来APIを追加する場合は別途設計し、Goを採用する場合もその実行基盤を改めて選定します。
+`wrangler.jsonc` は静的ファイルのディレクトリ、末尾スラッシュの扱い、404ページを指定します。Cloudflareアカウントとの接続、デプロイ、独自ドメイン、GitHub連携は別途必要です。`workers.dev` のURLはインターネットに公開されるため、確認用でも掲載内容を事前に確認してください。
 
-## 現在の状態
+## ローカル確認
 
-- Next.jsの静的ビルドと、CIによる各ページ・公開記事詳細・404の出力確認は実装済みです。
-- Wrangler設定、Cloudflareとの接続、Preview/Productionへのデプロイ、独自ドメインの設定は未実施です。
-- この文書は採用方針の記録です。Pages向けの設定手順は使用しません。
+Node.jsとpnpmを用意し、リポジトリのルートで実行します。
 
-## 配信実装時に行うこと
+```sh
+pnpm install --frozen-lockfile
+pnpm check
+pnpm dlx wrangler@4.155.0 dev
+```
 
-1. WranglerとWorkers Static Assetsの設定を追加し、配信ディレクトリを `out/` にします。
-2. ビルド時の `NEXT_PUBLIC_SITE_URL` に本番のHTTPSオリジンを設定します。未設定のローカル環境ではcanonical/OGPを出力しません。
-3. ローカルのWorkers環境で全ページ、末尾スラッシュ、404、画像、ヘッダーの扱いを確認します。
-4. PreviewとProductionを分け、GitHub連携・必要な権限・デプロイ方法を設定します。
-5. 必須CI成功とレビューを経て公開し、HTTPS・独自ドメイン・OGPを実環境で確認します。
+表示されたローカルURLで各ページ、末尾スラッシュ、存在しないページの404、画像を確認します。終了はCtrl+Cです。`pnpm check` のビルドで `out/` が生成されます。
 
-公開前には活動情報、問い合わせ窓口、写真の公開許可を確定してください。プライバシーポリシーの「配信を予定しています」も公開状況に合わせて更新します。
+## workers.devで確認する
+
+1. CloudflareアカウントとWorkersの利用準備を行い、使用するアカウントを確認します。
+2. 公開前に活動情報、問い合わせ窓口、写真の公開許可を確認します。プライバシーポリシーの配信状況も実態に合わせて更新します。
+3. レビューと必須CIを通した変更を使用し、`pnpm check` を実行します。
+4. `pnpm dlx wrangler@4.155.0 login` でログインし、`pnpm dlx wrangler@4.155.0 whoami` でアカウントを確認します。
+5. `pnpm dlx wrangler@4.155.0 deploy` を実行し、表示された `workers.dev` のURLでHTTPS、各ページ、末尾スラッシュ、404、画像を確認します。
+
+`NEXT_PUBLIC_SITE_URL` はビルド時に設定する本番のHTTPSオリジンです。未設定ではcanonical/OGPを出力しません。`workers.dev` が本番URLでない確認段階では空のままにし、本番URLが決まってから設定して再ビルドしてください。PreviewとProductionの分離、GitHub連携、自動デプロイ、独自ドメインは別途設計・設定します。
 
 ## 参考
 
 - [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
-- [Workers Static Assetsの設定](https://developers.cloudflare.com/workers/static-assets/binding/)
+- [静的サイトと404ページ](https://developers.cloudflare.com/workers/static-assets/routing/static-site-generation/)
 - [Next.js Static Exports](https://nextjs.org/docs/app/guides/static-exports)
