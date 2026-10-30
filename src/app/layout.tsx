@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import '@fontsource-variable/inter';
 import './globals.css';
 import { site, navigation } from '@/content/site';
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
-  icons: { icon: '/favicon.svg' },
+  icons: { icon: '/images/brand/icon.png' },
 };
 export default function RootLayout({
   children,
@@ -25,9 +26,13 @@ export default function RootLayout({
         </a>
         <header className="site-header">
           <Link href="/" className="brand">
-            <span className="brand-mark" aria-hidden="true">
-              m<span>.</span>
-            </span>
+            <Image
+              className="brand-mark"
+              src="/images/brand/logo.png"
+              alt=""
+              width={48}
+              height={48}
+            />
             <span>
               <strong>{site.school}</strong>
               <small>{site.english}</small>
