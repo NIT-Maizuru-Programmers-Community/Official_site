@@ -1,6 +1,13 @@
-import { readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+const publishedWorkSlugs = JSON.parse(
+  readFileSync(
+    new URL('../src/content/published-work-slugs.json', import.meta.url),
+    'utf8',
+  ),
+);
 
 export const pages = [
   'index.html',
@@ -12,6 +19,7 @@ export const pages = [
   'links/index.html',
   'privacy/index.html',
   '404.html',
+  ...publishedWorkSlugs.map((slug) => `works/${slug}/index.html`),
 ];
 
 export function checkStatic(directory) {
@@ -31,6 +39,7 @@ export function checkStatic(directory) {
       })) {
         if (!entry.isDirectory()) continue;
         const page = `${section}/${entry.name}/index.html`;
+        if (pages.includes(page)) continue;
         try {
           const info = statSync(resolve(directory, page));
           if (!info.isFile() || info.size === 0) failures.push(page);

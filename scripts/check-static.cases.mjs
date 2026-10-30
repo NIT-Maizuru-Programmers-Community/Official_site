@@ -51,3 +51,8 @@ test('checks generated work detail routes', (t) => {
   writeFileSync(join(directory, 'works/example/index.html'), '<!doctype html>');
   assert.deepEqual(checkStatic(directory), []);
 });
+test('rejects a missing published work directory', (t) => {
+  const directory = fixture(t);
+  rmSync(join(directory, 'works/puranavi-pig'), { recursive: true });
+  assert.deepEqual(checkStatic(directory), ['works/puranavi-pig/index.html']);
+});
