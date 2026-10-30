@@ -145,7 +145,9 @@ export function WorkList({ items }: { items: readonly Work[] }) {
               {formatDate(item.publishedAt)}
             </time>
           </p>
-          <h3>{item.title}</h3>
+          <h3>
+            <Link href={`/works/${item.slug}`}>{item.title}</Link>
+          </h3>
           <p>{item.summary}</p>
           <ul className="tags" aria-label="使用技術">
             {item.tags.map((tag) => (
@@ -153,6 +155,13 @@ export function WorkList({ items }: { items: readonly Work[] }) {
             ))}
           </ul>
           <div className="flex flex-wrap gap-6">
+            <Link
+              className="article-read-link"
+              href={`/works/${item.slug}`}
+              aria-label={`${item.title}の詳細`}
+            >
+              作品の詳細 <span aria-hidden="true">↗</span>
+            </Link>
             {item.repositoryUrl && (
               <ExternalLink className="arrow-link" href={item.repositoryUrl}>
                 ソースコード <span aria-hidden="true">↗</span>

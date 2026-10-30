@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { news } from '../content/news';
 import { works } from '../content/works';
+import publishedWorkSlugs from '../content/published-work-slugs.json';
 import { results } from '../content/results';
 import { activities } from '../content/activities';
 import { links } from '../content/links';
@@ -15,6 +16,13 @@ import {
 } from './content';
 import type { Work } from '../types/content';
 describe('content publication', () => {
+  it('keeps the static export manifest in sync with published works', () => {
+    expect([...publishedWorkSlugs].sort()).toEqual(
+      published(works)
+        .map(({ slug }) => slug)
+        .sort(),
+    );
+  });
   it('excludes drafts, sorts newest first, and preserves the source', () => {
     const items = [
       {

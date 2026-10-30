@@ -471,6 +471,10 @@ h3 {
   gap: 10px;
   padding-left: 1.25em;
 }
+.article-sources ul.tags {
+  display: flex;
+  padding-left: 0;
+}
 .activities-section {
   max-width: none;
   background: var(--surface);
