@@ -10,6 +10,7 @@ type Props = {
   section: string;
   backHref: string;
   backLabel: string;
+  body?: string;
 };
 
 export function EditorialArticle({
@@ -18,6 +19,7 @@ export function EditorialArticle({
   section,
   backHref,
   backLabel,
+  body,
 }: Props) {
   const achievement = 'outcomes' in item ? item : null;
   const news = 'category' in item ? item : null;
@@ -49,7 +51,7 @@ export function EditorialArticle({
             ))}
           </ul>
         )}
-        <MarkdownBody source={item.body} />
+        <MarkdownBody source={body ?? item.body ?? ''} />
         {achievement?.sources.length ? (
           <section
             className="article-sources"

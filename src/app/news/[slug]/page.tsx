@@ -3,6 +3,7 @@ import { news } from '@/content/news';
 import { EditorialArticle } from '@/components/ui/editorial-article';
 import { pageMetadata } from '@/lib/metadata';
 import { published } from '@/lib/content';
+import { readNewsBody } from '@/lib/news-body';
 
 export const dynamicParams = false;
 
@@ -29,6 +30,7 @@ export default async function NewsArticle({
   const { slug } = await params;
   const item = published(news).find((entry) => entry.slug === slug);
   if (!item) notFound();
+  const body = readNewsBody(item);
   return (
     <EditorialArticle
       item={item}
@@ -36,6 +38,7 @@ export default async function NewsArticle({
       section="NEWS"
       backHref="/news"
       backLabel="お知らせ一覧へ"
+      body={body}
     />
   );
 }

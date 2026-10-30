@@ -56,3 +56,10 @@ test('rejects a missing published work directory', (t) => {
   rmSync(join(directory, 'works/puranavi-pig'), { recursive: true });
   assert.deepEqual(checkStatic(directory), ['works/puranavi-pig/index.html']);
 });
+test('rejects a missing published news directory', (t) => {
+  const directory = fixture(t);
+  rmSync(join(directory, 'news/procon-37-results'), { recursive: true });
+  assert.deepEqual(checkStatic(directory), [
+    'news/procon-37-results/index.html',
+  ]);
+});

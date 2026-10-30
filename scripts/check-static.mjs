@@ -8,6 +8,12 @@ const publishedWorkSlugs = JSON.parse(
     'utf8',
   ),
 );
+const publishedNewsSlugs = JSON.parse(
+  readFileSync(
+    new URL('../src/content/published-news-slugs.json', import.meta.url),
+    'utf8',
+  ),
+);
 
 export const pages = [
   'index.html',
@@ -20,6 +26,7 @@ export const pages = [
   'privacy/index.html',
   '404.html',
   ...publishedWorkSlugs.map((slug) => `works/${slug}/index.html`),
+  ...publishedNewsSlugs.map((slug) => `news/${slug}/index.html`),
 ];
 
 export function checkStatic(directory) {
