@@ -12,7 +12,6 @@ import {
   NewsList,
   WorkList,
 } from '@/components/ui/content';
-import { ThreeScene } from '@/components/visual/three-scene';
 export const metadata = pageMetadata('ホーム', site.description, '/');
 export default function Home() {
   return (
@@ -42,28 +41,14 @@ export default function Home() {
               sizes="(max-width: 760px) 100vw, 45vw"
             />
           ) : (
-            <>
-              <ThreeScene variant="01" />
-              <div className="type-poster" aria-hidden="true">
-                <span className="poster-small">
-                  NITMC
-                  <br />
-                  PROGRAMMERS
-                  <br />
-                  COMMUNITY
-                </span>
-                <span className="poster-word">
-                  Think.
-                  <br />
-                  Code.
-                  <br />
-                  Create.
-                </span>
-                <span className="poster-bottom">
-                  MAIZURU, JAPAN <span>↗</span>
-                </span>
-              </div>
-            </>
+            <Image
+              className="hero-brand-image"
+              src="/images/brand/header.png"
+              alt="PRO COM — RUN THE CREATIVITY"
+              fill
+              priority
+              sizes="(max-width: 760px) 100vw, 45vw"
+            />
           )}
         </div>
       </section>

@@ -24,11 +24,11 @@
 
 実績は大会・イベント単位の記事として登録します。`eventYear`、大会名、部門別の `outcomes`（部門、任意の作品名、結果）、`summary`、`body`、確認できる公式情報への `sources` を記載してください。出場・受賞などの結果は、運営者から提供された情報または公式発表で確認します。参加者名は公開許可を確認できた場合だけ掲載します。
 
-トップ写真は `site.heroImage` に `{ src: '/images/activities/名前.webp', alt: '写真の具体的な説明' }` を設定します。未設定時は文字のデザインを表示します。デザイン検討用の生成モックアップ画像は配信しません。
+トップ写真は `site.heroImage` に `{ src: '/images/activities/名前.webp', alt: '写真の具体的な説明' }` を設定します。未設定時は部のヘッダー画像を表示します。デザイン検討用の生成モックアップ画像は配信しません。
 
 問い合わせ窓口は `site.contact` に `url`、`provider`、`retention`（保存期間）、`purpose`（利用目的）を設定します。お問い合わせページとプライバシーポリシーが同じ設定を参照します。未設定時は受付を案内せず、個人情報を収集しません。
 
-フォントはFontsourceパッケージからセルフホストしています。OG画像は `public/images/common/og.png`、アイコンは `public/favicon.svg` です。
+フォントはFontsourceパッケージからセルフホストしています。OG画像は `public/images/common/og.png`、アイコンは `public/images/brand/icon.png` です。
 
 具体的な初回操作は[最初のPR](first-pull-request.md)を参照してください。
 

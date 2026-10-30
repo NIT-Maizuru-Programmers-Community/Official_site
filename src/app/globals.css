@@ -130,14 +130,9 @@ h3 {
   flex-shrink: 0;
 }
 .brand-mark {
-  color: var(--accent);
-  font-weight: 750;
-  font-size: 40px;
-  line-height: 1;
-  letter-spacing: -0.1em;
-}
-.brand-mark span {
-  color: var(--ink);
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
 .brand strong {
   display: block;
@@ -307,6 +302,9 @@ h3 {
 }
 .hero-visual img {
   object-fit: cover;
+}
+.hero-visual img.hero-brand-image {
+  object-fit: contain;
 }
 .section {
   padding: clamp(64px, 8vw, 112px) var(--page-gutter);
@@ -963,9 +961,6 @@ html.motion-ready .hero-visual.is-visible::before {
   }
   .brand small {
     font-size: 10px;
-  }
-  .brand-mark {
-    font-size: 40px;
   }
   .menu-toggle {
     display: inline-flex;
