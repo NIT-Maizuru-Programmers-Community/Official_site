@@ -305,6 +305,7 @@ h3 {
 }
 .hero-visual img.hero-brand-image {
   object-fit: contain;
+  filter: invert(1);
 }
 .section {
   padding: clamp(64px, 8vw, 112px) var(--page-gutter);
@@ -1167,16 +1168,15 @@ html.motion-ready .hero-visual.is-visible::before {
   }
 }
 
-/* Three.js の光の層をページの余白へ溶け込ませ、見出しと競合させない */
+/* 写真が未設定の場合は単色の背景に部のロゴを表示する */
 .hero-visual:not(.has-photo) {
   isolation: isolate;
-  background:
-    linear-gradient(135deg, rgb(0 0 0 / 65%), transparent 54%),
-    linear-gradient(145deg, #242424, #000 72%);
+  background: #111;
 }
 .hero-visual:not(.has-photo)::before {
   display: none;
 }
+/* Three.js の光の層をページの余白へ溶け込ませ、見出しと競合させない */
 .three-scene {
   position: relative;
   width: 100%;

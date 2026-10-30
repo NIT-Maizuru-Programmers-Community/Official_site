@@ -43,7 +43,7 @@ export default function Home() {
           ) : (
             <Image
               className="hero-brand-image"
-              src="/images/brand/header.png"
+              src="/images/brand/logo.png"
               alt="PRO COM — RUN THE CREATIVITY"
               fill
               priority
