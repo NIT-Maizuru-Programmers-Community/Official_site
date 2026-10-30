@@ -163,6 +163,11 @@ export function WorkList({ items }: { items: readonly Work[] }) {
                 作品を見る <span aria-hidden="true">↗</span>
               </ExternalLink>
             )}
+            {item.videoUrl && (
+              <ExternalLink className="arrow-link" href={item.videoUrl}>
+                動画を見る <span aria-hidden="true">↗</span>
+              </ExternalLink>
+            )}
           </div>
         </article>
       ))}
