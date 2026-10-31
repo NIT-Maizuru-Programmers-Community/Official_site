@@ -4,6 +4,7 @@ import remarkParse from 'remark-parse';
 import type { ReactNode } from 'react';
 import type { ExternalUrl } from '@/types/content';
 import { ExternalLink } from './external-link';
+import { MermaidDiagram } from './mermaid-diagram';
 
 type MarkdownNode = {
   type: string;
@@ -58,6 +59,9 @@ function renderNode(node: MarkdownNode, key: number | string): ReactNode {
     case 'inlineCode':
       return <code key={key}>{node.value}</code>;
     case 'code':
+      if (node.lang === 'mermaid') {
+        return <MermaidDiagram key={key} source={node.value ?? ''} />;
+      }
       return (
         <pre key={key}>
           <code>{node.value}</code>

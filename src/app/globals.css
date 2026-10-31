@@ -452,6 +452,18 @@ h3 {
   border-radius: 12px;
   background: var(--surface);
 }
+.mermaid-diagram {
+  overflow-x: auto;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--surface);
+}
+.mermaid-diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+}
 .article-image {
   width: 100%;
   height: auto;

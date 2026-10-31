@@ -78,6 +78,8 @@
 
 Markdownでは見出し、段落、箇条書き、リンク、強調、コードを使えます。生HTMLは表示されません。リンクはHTTPSまたはサイト内パスを使い、画像を使う場合は公開許可とEXIF削除を確認したうえで、`public/images/` 内の画像を指定します。
 
+Mermaidの図は、コードブロックの言語に `mermaid` を指定して記述します。JavaScriptが無効な場合や描画に失敗した場合は、図の代わりに元の記法を表示します。
+
 実績の記事は `src/content/results.ts` に追加します。`publishedAt` は結果を掲載する日、`eventYear` は大会・イベントの開催年です。`outcomes` に結果を部門ごとに記録し、`sources` に公式発表などの出典を設定してください。
 
 確認は `pnpm test` と `pnpm typecheck`、表示確認は `pnpm dev` で行います。画像・URLを含む作品の項目は [型定義](../src/types/content.ts) と [既存の作品データ](../src/content/works.ts)を参照してください。
