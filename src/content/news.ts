@@ -20,6 +20,8 @@ export const news = [
       'プログラマーズコミュニティ部の公式サイトを作りました。サイトで見られることや、使っている技術を紹介します。',
     publishedAt: '2026-10-31',
     category: 'ブログ',
+    author: 'Hizume Kazushi',
+    authorUrl: 'https://x.com/hiz_kz',
     markdown: true,
   },
   {

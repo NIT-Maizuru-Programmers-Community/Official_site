@@ -1,5 +1,6 @@
 import { ArrowLink, PageHeading } from '@/components/ui/content';
 import { ExternalLink } from '@/components/ui/external-link';
+import { AuthorByline } from '@/components/ui/author-byline';
 import { MarkdownBody } from '@/components/ui/markdown';
 import { formatDate } from '@/lib/content';
 import type { Achievement, News } from '@/types/content';
@@ -39,7 +40,12 @@ export function EditorialArticle({
           <time dateTime={item.publishedAt}>
             {formatDate(item.publishedAt)}
           </time>
-          {news?.author?.trim() && ` ・ 執筆：${news.author.trim()}`}
+          {news?.author?.trim() && (
+            <>
+              {' ・ '}
+              <AuthorByline author={news.author} authorUrl={news.authorUrl} />
+            </>
+          )}
         </p>
         {achievement && (
           <ul className="achievement-outcomes" aria-label="大会結果">

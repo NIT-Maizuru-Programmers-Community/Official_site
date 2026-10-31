@@ -89,6 +89,10 @@ describe('content publication', () => {
       expect(item.summary.trim()).not.toBe('');
     }
     for (const item of news as readonly News[]) {
+      if (item.authorUrl) {
+        expect(item.author?.trim()).toBeTruthy();
+        expect(new URL(item.authorUrl).protocol).toBe('https:');
+      }
       if (item.markdown) {
         expect(
           existsSync(
