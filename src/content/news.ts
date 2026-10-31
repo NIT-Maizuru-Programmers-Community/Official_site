@@ -21,7 +21,6 @@ export const news = [
     publishedAt: '2026-10-31',
     category: 'ブログ',
     markdown: true,
-    draft: true,
   },
   {
     slug: 'first-report',
