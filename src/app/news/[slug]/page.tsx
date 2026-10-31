@@ -3,6 +3,8 @@ import { news } from '@/content/news';
 import { EditorialArticle } from '@/components/ui/editorial-article';
 import { pageMetadata } from '@/lib/metadata';
 import { published } from '@/lib/content';
+import { readNewsBody } from '@/lib/news-body';
+import type { News } from '@/types/content';
 
 export const dynamicParams = false;
 
@@ -16,7 +18,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const item = published(news).find((entry) => entry.slug === slug);
+  const item = published<News>(news).find((entry) => entry.slug === slug);
   if (!item) return {};
   return pageMetadata(item.title, item.summary, `/news/${item.slug}`);
 }
@@ -27,15 +29,18 @@ export default async function NewsArticle({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const item = published(news).find((entry) => entry.slug === slug);
+  const item = published<News>(news).find((entry) => entry.slug === slug);
   if (!item) notFound();
+  const body = readNewsBody(item);
+  const isBlog = item.category === 'ブログ';
   return (
     <EditorialArticle
       item={item}
-      number="03"
-      section="NEWS"
-      backHref="/news"
-      backLabel="お知らせ一覧へ"
+      number={isBlog ? '06' : '03'}
+      section={isBlog ? 'BLOG' : 'NEWS'}
+      backHref={isBlog ? '/blog' : '/news'}
+      backLabel={isBlog ? 'ブログ一覧へ' : 'お知らせ一覧へ'}
+      body={body}
     />
   );
 }

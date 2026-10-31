@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { news } from '../content/news';
+import publishedNewsSlugs from '../content/published-news-slugs.json';
 import { works } from '../content/works';
 import publishedWorkSlugs from '../content/published-work-slugs.json';
 import { results } from '../content/results';
@@ -14,8 +15,15 @@ import {
   formatDate,
   orderedAchievements,
 } from './content';
-import type { Work } from '../types/content';
+import type { News, Work } from '../types/content';
 describe('content publication', () => {
+  it('keeps the static export manifest in sync with published news', () => {
+    expect([...publishedNewsSlugs].sort()).toEqual(
+      published(news)
+        .map(({ slug }) => slug)
+        .sort(),
+    );
+  });
   it('keeps the static export manifest in sync with published works', () => {
     expect([...publishedWorkSlugs].sort()).toEqual(
       published(works)
@@ -79,6 +87,19 @@ describe('content publication', () => {
     for (const item of [...news, ...works, ...results]) {
       expect(isValidDate(item.publishedAt)).toBe(true);
       expect(item.summary.trim()).not.toBe('');
+    }
+    for (const item of news as readonly News[]) {
+      if (item.authorUrl) {
+        expect(item.author?.trim()).toBeTruthy();
+        expect(new URL(item.authorUrl).protocol).toBe('https:');
+      }
+      if (item.markdown) {
+        expect(
+          existsSync(
+            join(process.cwd(), 'src/content/news', `${item.slug}.md`),
+          ),
+        ).toBe(true);
+      }
     }
     for (const item of works as readonly Work[]) {
       for (const url of [item.repositoryUrl, item.websiteUrl])

@@ -1,5 +1,6 @@
 import { ArrowLink, PageHeading } from '@/components/ui/content';
 import { ExternalLink } from '@/components/ui/external-link';
+import { AuthorByline } from '@/components/ui/author-byline';
 import { MarkdownBody } from '@/components/ui/markdown';
 import { formatDate } from '@/lib/content';
 import type { Achievement, News } from '@/types/content';
@@ -10,6 +11,7 @@ type Props = {
   section: string;
   backHref: string;
   backLabel: string;
+  body?: string;
 };
 
 export function EditorialArticle({
@@ -18,6 +20,7 @@ export function EditorialArticle({
   section,
   backHref,
   backLabel,
+  body,
 }: Props) {
   const achievement = 'outcomes' in item ? item : null;
   const news = 'category' in item ? item : null;
@@ -37,6 +40,12 @@ export function EditorialArticle({
           <time dateTime={item.publishedAt}>
             {formatDate(item.publishedAt)}
           </time>
+          {news?.author?.trim() && (
+            <>
+              {' ・ '}
+              <AuthorByline author={news.author} authorUrl={news.authorUrl} />
+            </>
+          )}
         </p>
         {achievement && (
           <ul className="achievement-outcomes" aria-label="大会結果">
@@ -49,7 +58,7 @@ export function EditorialArticle({
             ))}
           </ul>
         )}
-        <MarkdownBody source={item.body} />
+        <MarkdownBody source={body ?? item.body ?? ''} />
         {achievement?.sources.length ? (
           <section
             className="article-sources"

@@ -8,6 +8,12 @@ const publishedWorkSlugs = JSON.parse(
     'utf8',
   ),
 );
+const publishedNewsSlugs = JSON.parse(
+  readFileSync(
+    new URL('../src/content/published-news-slugs.json', import.meta.url),
+    'utf8',
+  ),
+);
 
 export const pages = [
   'index.html',
@@ -15,16 +21,28 @@ export const pages = [
   'works/index.html',
   'results/index.html',
   'news/index.html',
+  'blog/index.html',
   'contact/index.html',
   'links/index.html',
   'privacy/index.html',
   '404.html',
-  ...publishedWorkSlugs.map((slug) => `works/${slug}/index.html`),
 ];
 
-export function checkStatic(directory) {
+export function requiredPages({
+  workSlugs = publishedWorkSlugs,
+  newsSlugs = publishedNewsSlugs,
+} = {}) {
+  return [
+    ...pages,
+    ...workSlugs.map((slug) => `works/${slug}/index.html`),
+    ...newsSlugs.map((slug) => `news/${slug}/index.html`),
+  ];
+}
+
+export function checkStatic(directory, slugs = {}) {
   const failures = [];
-  for (const page of pages) {
+  const expectedPages = requiredPages(slugs);
+  for (const page of expectedPages) {
     try {
       const info = statSync(resolve(directory, page));
       if (!info.isFile() || info.size === 0) failures.push(page);
@@ -39,7 +57,7 @@ export function checkStatic(directory) {
       })) {
         if (!entry.isDirectory()) continue;
         const page = `${section}/${entry.name}/index.html`;
-        if (pages.includes(page)) continue;
+        if (expectedPages.includes(page)) continue;
         try {
           const info = statSync(resolve(directory, page));
           if (!info.isFile() || info.size === 0) failures.push(page);

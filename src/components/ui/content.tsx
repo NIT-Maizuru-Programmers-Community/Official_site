@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ExternalLink } from '@/components/ui/external-link';
+import { AuthorByline } from '@/components/ui/author-byline';
 import type { Achievement, News, Work } from '@/types/content';
 import { formatDate } from '@/lib/content';
 import { ThreeScene } from '@/components/visual/three-scene';
@@ -55,6 +56,7 @@ export function NewsList({ items }: { items: readonly News[] }) {
               {formatDate(item.publishedAt)}
             </time>
             <span>{item.category}</span>
+            <AuthorByline author={item.author} authorUrl={item.authorUrl} />
           </div>
           <h3>
             <Link href={`/news/${item.slug}`}>{item.title}</Link>

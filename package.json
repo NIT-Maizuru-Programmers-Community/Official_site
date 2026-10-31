@@ -28,6 +28,7 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/noto-sans-jp": "^5.2.8",
+    "mermaid": "^12.2.0",
     "next": "^16.4.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -35,20 +36,20 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.0",
-    "@types/node": "^22.0.0",
+    "@types/node": "^26.6.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@types/three": "^0.186.0",
     "eslint": "^9.39.0",
-    "eslint-config-next": "^16.2.0",
+    "eslint-config-next": "^16.4.3",
     "prettier": "^3.9.10",
-    "serve": "^14.2.4",
-    "tailwindcss": "^4.2.0",
-    "typescript": "^5.9.3",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "remark-stringify": "^11.0.0",
+    "serve": "^14.2.4",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^6.0.3",
     "unified": "^11.0.5",
-    "vitest": "^4.0.0"
+    "vitest": "^5.0.5"
   }
 }

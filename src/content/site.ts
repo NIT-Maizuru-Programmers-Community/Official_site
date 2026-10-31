@@ -17,6 +17,7 @@ export const navigation = [
   ['/works', '作品紹介'],
   ['/results', '大会・イベント実績'],
   ['/news', 'お知らせ'],
+  ['/blog', 'ブログ'],
   ['/contact', 'お問い合わせ'],
   ['/links', '各種リンク'],
 ] as const;

@@ -29,4 +29,12 @@ describe('MarkdownBody', () => {
     expect(html).not.toContain('onerror');
     expect(html).not.toContain('javascript:');
   });
+
+  it('keeps Mermaid source readable before client rendering', () => {
+    const html = renderToStaticMarkup(
+      <MarkdownBody source={'```mermaid\nflowchart TD\nA --> B\n```'} />,
+    );
+    expect(html).toContain('<pre><code>flowchart TD');
+    expect(html).toContain('A --&gt; B');
+  });
 });
