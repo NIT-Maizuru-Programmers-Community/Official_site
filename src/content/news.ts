@@ -17,7 +17,7 @@ export const news = [
     slug: 'official-website',
     title: '公式サイト作りました',
     summary:
-      'プログラマーズコミュニティ部の公式サイトを作りました。サイトで見られることや、使っている技術を紹介します。',
+      'プログラマーズコミュニティ部の公式サイトで見られる、活動や作品などを紹介します。',
     publishedAt: '2026-10-31',
     category: 'ブログ',
     author: 'Hizume Kazushi',
