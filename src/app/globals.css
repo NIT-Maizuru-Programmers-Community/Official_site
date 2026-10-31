@@ -340,6 +340,7 @@ h3 {
 }
 .news-meta {
   display: flex;
+  flex-wrap: wrap;
   gap: 18px;
   align-items: center;
   margin-bottom: 12px;

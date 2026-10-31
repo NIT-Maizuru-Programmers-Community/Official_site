@@ -21,6 +21,7 @@ export const pages = [
   'works/index.html',
   'results/index.html',
   'news/index.html',
+  'blog/index.html',
   'contact/index.html',
   'links/index.html',
   'privacy/index.html',

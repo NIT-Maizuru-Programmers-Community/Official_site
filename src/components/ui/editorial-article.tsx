@@ -39,6 +39,7 @@ export function EditorialArticle({
           <time dateTime={item.publishedAt}>
             {formatDate(item.publishedAt)}
           </time>
+          {news?.author?.trim() && ` ・ 執筆：${news.author.trim()}`}
         </p>
         {achievement && (
           <ul className="achievement-outcomes" aria-label="大会結果">
