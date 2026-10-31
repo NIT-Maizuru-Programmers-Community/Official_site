@@ -16,6 +16,7 @@ vi.mock('@/content/news', () => ({
       slug: 'newer',
       title: '新しいブログ',
       author: '部員の公開名',
+      authorUrl: 'https://example.com/profile',
       summary: '本文',
       publishedAt: '2026-02-01',
       category: 'ブログ',
@@ -45,7 +46,8 @@ it('公開ブログだけを新しい順に一覧表示し、既存の記事に�
   const html = renderToStaticMarkup(<Blog />);
   expect(html).toContain('href="/news/newer"');
   expect(html).toContain('href="/news/older"');
-  expect(html).toContain('執筆：部員の公開名');
+  expect(html).toContain('href="https://example.com/profile"');
+  expect(html).toContain('部員の公開名</a>');
   expect(html.indexOf('新しいブログ')).toBeLessThan(html.indexOf('古いブログ'));
   expect(html).not.toContain('下書きブログ');
   expect(html).not.toContain('普通のお知らせ');
