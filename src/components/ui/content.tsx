@@ -55,6 +55,7 @@ export function NewsList({ items }: { items: readonly News[] }) {
               {formatDate(item.publishedAt)}
             </time>
             <span>{item.category}</span>
+            {item.author?.trim() && <span>執筆：{item.author.trim()}</span>}
           </div>
           <h3>
             <Link href={`/news/${item.slug}`}>{item.title}</Link>

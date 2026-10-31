@@ -57,7 +57,7 @@
 
 ## Markdownファイルでブログを書く
 
-ブログもお知らせ一覧に表示します。本文を独立したMarkdownファイルで管理したい場合は、`src/content/news/` に `slug` と同名の `.md` ファイルを作ります。例えば `src/content/news/practice-blog.md` に本文を記述し、`src/content/news.ts` の `news` 配列に次のように追加します。
+ブログはブログ一覧とお知らせ一覧に表示します。本文を独立したMarkdownファイルで管理したい場合は、`src/content/news/` に `slug` と同名の `.md` ファイルを作ります。例えば `src/content/news/practice-blog.md` に本文を記述し、`src/content/news.ts` の `news` 配列に次のように追加します。
 
 ```ts
 {
@@ -66,16 +66,19 @@
   summary: '記事の内容を短く紹介します。',
   publishedAt: '2026-09-11',
   category: 'ブログ',
+  author: '公開名',
   markdown: true,
   draft: true,
 },
 ```
 
-この例は練習用です。タイトル、概要、本文、掲載日を実際の内容へ変更し、公開前に内容と画像の掲載許可を確認してください。下書きでもMarkdownファイルは必要です。`markdown: true` と `body` は同時に指定せず、従来どおり `body` に本文を書く方法も使えます。
+この例は練習用です。タイトル、概要、本文、掲載日を実際の内容へ変更し、公開前に内容と画像の掲載許可を確認してください。`author` は任意で、記事一覧と本文に表示する執筆者の公開名を指定します。下書きでもMarkdownファイルは必要です。`markdown: true` と `body` は同時に指定せず、従来どおり `body` に本文を書く方法も使えます。
 
 公開時は `draft` を外すか `false` にし、`published-news-slugs.json` にslugを追加してPRを作ります。レビューとCIを通してマージした後、[公開手順](deployment.md)に従ってデプロイするとサイトに反映されます。
 
 Markdownでは見出し、段落、箇条書き、リンク、強調、コードを使えます。生HTMLは表示されません。リンクはHTTPSまたはサイト内パスを使い、画像を使う場合は公開許可とEXIF削除を確認したうえで、`public/images/` 内の画像を指定します。
+
+Mermaidの図は、コードブロックの言語に `mermaid` を指定して記述します。JavaScriptが無効な場合や描画に失敗した場合は、図の代わりに元の記法を表示します。
 
 実績の記事は `src/content/results.ts` に追加します。`publishedAt` は結果を掲載する日、`eventYear` は大会・イベントの開催年です。`outcomes` に結果を部門ごとに記録し、`sources` に公式発表などの出典を設定してください。
 

@@ -17,6 +17,7 @@ export type Work = DatedContent & {
 };
 export type News = DatedContent & {
   category: '活動報告' | 'イベント' | 'お知らせ' | 'ブログ';
+  author?: string;
 } & ({ body: string; markdown?: never } | { body?: never; markdown: true });
 export type Achievement = DatedContent & {
   eventName: string;

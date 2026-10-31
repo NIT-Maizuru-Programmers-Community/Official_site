@@ -340,6 +340,7 @@ h3 {
 }
 .news-meta {
   display: flex;
+  flex-wrap: wrap;
   gap: 18px;
   align-items: center;
   margin-bottom: 12px;
@@ -450,6 +451,18 @@ h3 {
   padding: 16px;
   border-radius: 12px;
   background: var(--surface);
+}
+.mermaid-diagram {
+  overflow-x: auto;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--surface);
+}
+.mermaid-diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
 }
 .article-image {
   width: 100%;
