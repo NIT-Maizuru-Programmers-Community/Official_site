@@ -32,13 +32,14 @@ export default async function NewsArticle({
   const item = published<News>(news).find((entry) => entry.slug === slug);
   if (!item) notFound();
   const body = readNewsBody(item);
+  const isBlog = item.category === 'ブログ';
   return (
     <EditorialArticle
       item={item}
-      number="03"
-      section="NEWS"
-      backHref={item.category === 'ブログ' ? '/blog' : '/news'}
-      backLabel={item.category === 'ブログ' ? 'ブログ一覧へ' : 'お知らせ一覧へ'}
+      number={isBlog ? '06' : '03'}
+      section={isBlog ? 'BLOG' : 'NEWS'}
+      backHref={isBlog ? '/blog' : '/news'}
+      backLabel={isBlog ? 'ブログ一覧へ' : 'お知らせ一覧へ'}
       body={body}
     />
   );
