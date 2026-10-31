@@ -14,6 +14,16 @@ export const news = [
     ].join('\n\n'),
   },
   {
+    slug: 'official-website',
+    title: '公式サイト作りました',
+    summary:
+      'プログラマーズコミュニティ部の公式サイトを作りました。サイトで見られることや、使っている技術を紹介します。',
+    publishedAt: '2026-10-31',
+    category: 'ブログ',
+    markdown: true,
+    draft: true,
+  },
+  {
     slug: 'first-report',
     title: '活動報告のタイトル',
     summary: '公開を承認された活動内容に置き換えてください。',
